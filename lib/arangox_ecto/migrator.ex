@@ -6,6 +6,9 @@ defmodule ArangoXEcto.Migrator do
   require Logger
   alias Mix.ArangoXEcto, as: Helpers
 
+  @doc """
+  Runs Migration/Rollback functions for specified db
+  """
   def migrate(db_name, opts) do
     case opts do
       {[], []} ->

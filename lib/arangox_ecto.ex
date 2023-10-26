@@ -272,11 +272,11 @@ defmodule ArangoXEcto do
   @doc """
   Creates a view defined by some view schema
 
-  When in dynamic mode this will automatically create analyzers 
-  and linked collections. If in static mode these need to be done 
+  When in dynamic mode this will automatically create analyzers
+  and linked collections. If in static mode these need to be done
   seperately in the migrations.
 
-  For the analyzers to be automatically created in dynamic mode 
+  For the analyzers to be automatically created in dynamic mode
   the analyzers module needs to be passed as an option into the view
   module definition. See `ArangoXEcto.View` for more info.
 
@@ -335,7 +335,7 @@ defmodule ArangoXEcto do
   This will first force delete any analyzers with the same name before creating
   the ones defined.
 
-  In production you should be using migrations in static mode. This function 
+  In production you should be using migrations in static mode. This function
   will be called when an analyzer module is passed to the `ArangoXEcto.Migration.create/2`
   function.
 
@@ -398,7 +398,7 @@ defmodule ArangoXEcto do
   - `schema` - The Collection Schema to be created
   - `opts` - Additional options to pass
 
-  ## Options 
+  ## Options
 
   - `:prefix` - The prefix to use for database tenant collection creation
 
@@ -941,6 +941,12 @@ defmodule ArangoXEcto do
 
   def __build_connection_url__(repo, string, prefix, options),
     do: "/_db/#{get_prefix_database(repo, prefix)}/_api/#{string}#{options}"
+
+  ###############
+  ## Manage migrations
+  ###############
+
+  defdelegate migrate(db_name, opts), to: ArangoXEcto.Migrator
 
   ###############
   ##  Helpers  ##
